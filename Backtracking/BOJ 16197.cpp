@@ -9,9 +9,9 @@ int dx[4] = {1,-1,0,0};
 int dy[4] = {0,0,1,-1};
 string board[21];
 
-int dfs(int cnt, int x1, int y1, int x2, int y2){
-    if(cnt > 10)
-        return -1;
+void dfs(int cnt, int x1, int y1, int x2, int y2){
+    if(cnt == 10)
+        return;
     
     for(int i=0; i<4; i++){
         int nx1 = x1 + dx[i];
@@ -21,25 +21,25 @@ int dfs(int cnt, int x1, int y1, int x2, int y2){
         
         if(nx1 >= 0 && nx1 < m && ny1 >= 0 && ny1 < n && nx2 >= 0 && nx2 < m && ny2 >= 0 && ny2 < n){
             if(board[ny1][nx1] == '#' && board[ny2][nx2] == '#')
-                dfs(cnt+1, x1, y1, x2, y2);
+                continue;
             
             if(board[ny1][nx1] == '#')
-                dfs(cnt+1, x1, x2, nx2, ny2);
+                dfs(cnt+1, x1, y1, nx2, ny2);
             
             if(board[ny2][nx2] == '#')
-                dfs(cnt+1, nx1, ny1, x2, y2);
+                dfs(cnt+1, nx1, ny1, x1, y1);
             
             if(board[ny1][nx1] != '#' && board[ny2][nx2] != '#')
                 dfs(cnt+1, nx1, ny1, nx2, ny2);
         }
         
         else if((nx1 < 0 || nx1 >= m || ny1 < 0 || ny1 >= n) && (nx2 < 0 || nx2 >= m || ny2 < 0 || ny2 >= n))
-            return -1;
+            continue;
         
         else{
-            //if(minimum > cnt + 1)
-            //    minimum = cnt + 1;
-            return cnt + 1;
+            if(minimum > cnt + 1)
+                minimum = cnt + 1;
+            return;
         }
     }
 }
@@ -54,18 +54,22 @@ int main(){
         
         for(int j=0; j<m; j++){
             if(board[i][j] == 'o' && num == 0){
-                c1x = i, c1y = j;
+                c1x = j, c1y = i;
                 num++;
             }
             
-            if(board[i][j] == 'o' && num == 1){
-                c2x = i, c2y = j;
-            }
+            if(board[i][j] == 'o' && num == 1)
+                c2x = j, c2y = i;
         }
     }
     
-    int ans = dfs(0, c1x, c1y, c2x, c2y);
-    cout<<ans<<endl;
+    dfs(0, c1x, c1y, c2x, c2y);
+    
+    if(minimum == 2e9)
+        cout<<-1<<endl;
+    
+    else
+        cout<<minimum<<endl;
     
     return 0;
 }
