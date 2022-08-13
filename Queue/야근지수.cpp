@@ -1,27 +1,30 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <algorithm>
 
-using namescace std;
+using namespace std;
 
 long long solution(int n, vector<int> works) {
     long long answer = 0;
-    priority_queue<int> pq(works.begin(),works.end());
-    while(n > 0)
-    {
-        if(pq.top() > 0)
-        {
-            int temp = pq.top();
-            pq.pop();
-            pq.push(temp - 1);
-            n--;
-        }
-        else
-        {
-            break;
-        }
+    
+    priority_queue<int> work(works.begin(), works.end());
+    int size = works.size();
+    
+    for(int i=0; i<n; i++){
+        if(work.top() == 0)
+            return 0;
+        
+        works[size-1]--;
+        int tmp = work.top();
+        work.pop();
+        work.push(tmp-1);
     }
-    while(!pq.empty())
-    {
-        int temp = pq.top();
-        answer += temp * t
+    
+    for(int i=0; i<size; i++){
+        answer += work.top() * work.top();
+        work.pop();
+    }       
+    
+    return answer;
+}
