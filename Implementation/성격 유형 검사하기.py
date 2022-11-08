@@ -14,24 +14,9 @@ def solution(survey, choices):
         else: # 비동의 -> 왼쪽에 점수 추가
             type[left] = type[left] + (4 - choices[i])
     
-    if type['R'] >= type['T']:
-        answer += 'R'
-    else:
-        answer += 'T'
-    
-    if type['C'] >= type['F']:
-        answer += 'C'
-    else:
-        answer += 'F'
-    
-    if type['J'] >= type['M']:
-        answer += 'J'
-    else:
-        answer += 'M'
-        
-    if type['A'] >= type['N']:
-        answer += 'A'
-    else:
-        answer += 'N'
+    answer += 'R' if type['R'] >= type['T'] else 'T'
+    answer += 'C' if type['C'] >= type['F'] else 'F'
+    answer += 'J' if type['J'] >= type['M'] else 'M'       
+    answer += 'A' if type['A'] >= type['N'] else 'N'
     
     return answer
