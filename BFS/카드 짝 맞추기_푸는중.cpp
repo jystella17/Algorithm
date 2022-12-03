@@ -1,6 +1,8 @@
 // 프로그래머스 LV.3 카드 짝 맞추기
 // 2021 카카오 신입공채 1차 6번
 // 입력값이 작아 완전탐색 가능 -> BFS
+// 남은 카드를 제거하는 순서를 순열로 미리 구함 (algorithm 헤더의 next_permutation 함수)
+// 순열에 따라 BFS로 탐색하면서 최소 조작 횟수를 구함
 
 #include <string>
 #include <vector>
