@@ -1,4 +1,4 @@
-// 프로그래머스 LV.3 다단계 칫솔
+// 프로그래머스 LV.3 다단계 칫솔 판매
 // Map & 재귀 (Union-Find의 Find 개념 참고)
 
 #include <string>
