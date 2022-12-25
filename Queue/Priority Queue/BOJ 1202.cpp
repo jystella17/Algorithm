@@ -36,6 +36,7 @@ int main(){
             idx++;
         }
         
+        // 현재 가방에 넣을 수 있는 보석들 중 가장 가격이 높은 보석 하나를 선택
         if(!stolen.empty()){
             max_price += stolen.top();
             stolen.pop();
