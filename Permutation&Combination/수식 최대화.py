@@ -1,7 +1,7 @@
 # 프로그래머스 LV.2 수식 최대화
 # 2020 카카오 인턴십
 # 정규표현식 관련 함수 사용법 공부, del과 remove의 차이에 주의 
-# remove를 사용할 경우 해당 값을 갖는 가장 첫 번째 원소가 삭제되므로, 실제로 삭제하려는 원소가 아닌 다른 원소가 삭제될 수 있음
+# remove를 사용할 경우 해당 값을 갖는 첫 번째 원소가 삭제되므로, 실제로 삭제하려는 원소가 아닌 다른 원소가 삭제될 수 있음
 
 from itertools import permutations
 from collections import deque
