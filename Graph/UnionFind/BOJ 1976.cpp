@@ -1,5 +1,5 @@
-// 백준 여행 가자 (Gold 4)
-// Union-Find 알고리즘
+// 백준 G4 여행 가자
+// Union-Find
 
 #include <iostream>
 #include <cstring>
