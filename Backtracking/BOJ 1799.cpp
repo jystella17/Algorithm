@@ -1,69 +1,50 @@
 #include <iostream>
-#include <vector>
-#include <cmath>
+#include <algorithm>
 using namespace std;
 
-typedef struct MyStruct
-{
-	int y;
-	int x;
-}chess;
-int n = 0, result = 0;
-int temp[11][11];
-vector <chess> arr;
-vector <chess> bitshop;
+int n, white_bishop, black_bishop;
+int board[10][10];
+bool diagonal_upper[20],diagonal_under[20];
 
-void dfs(int cnt, int cur) {
-
-	if (cnt > result) {
-		result = cnt;
+void dfs(int x, int y, int cnt, bool flag){
+	if(y >= n){
+		x++;
+		if(y % 2 == 1)
+			y = 0;
+		else
+			y = 1;
 	}
-	if (cur == arr.size())
+
+	if(x == n){
+		if(!flag)
+			black_bishop = max(black_bishop, cnt);
+		else
+			white_bishop = max(white_bishop, cnt);
+        
 		return;
-
-	bool jud = true;
-	for (int j = 0; j < bitshop.size(); j++) {
-		if (abs(arr[cur].y - bitshop[j].y) == abs(arr[cur].x - bitshop[j].x)) {
-			jud = false;
-			break;
-		}
 	}
-	if (jud == true) {
-		bitshop.push_back({ arr[cur].y,arr[cur].x });
-		dfs(cnt + 1, cur + 1);
-		bitshop.pop_back();
+    
+	if(board[x][y] == 1 && !diagonal_upper[x+y] && !diagonal_under[x-y+n]){
+		diagonal_upper[x+y] = true;
+		diagonal_under[x-y+n] = true;
+        
+		dfs(x, y+2, cnt+1, flag);
+        
+		diagonal_upper[x+y] = false;
+		diagonal_under[x-y+n] = false;
 	}
-	dfs(cnt, cur + 1);
-
-	return;
-
-}
-
-int main() {
-	cin >> n;
-	int answer = 0;
-	for(int i=1;i<=n;i++)
-		for (int j = 1; j <= n; j++) {
-			cin >> temp[i][j];
-			if (temp[i][j] == 1 && (i+j)%2 == 0)
-				arr.push_back({ i,j });
-		}
-
-	dfs(0, 0);
-	answer += result;
-	result = 0;
-	arr.clear();
-
-
-	for (int i = 1; i <= n; i++)
-		for (int j = 1; j <= n; j++) {
-			if (temp[i][j] == 1 && (i + j) % 2 == 1)
-				arr.push_back({ i,j });
-		}
-	dfs(0, 0);
-	answer += result;
-	cout << answer << endl;
-
 	
+    dfs(x, y+2, cnt, flag);
+}
+int main(){
+	cin>>n;
+	for(int i=0; i<n; i++)
+		for(int j=0; j<n; j++)
+			cin >> board[i][j];
+
+	dfs(0,0,0,0);
+	dfs(0,1,0,1);
+
+	cout<<black_bishop + white_bishop<<"\n";
 	return 0;
 }
