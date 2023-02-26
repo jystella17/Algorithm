@@ -1,6 +1,6 @@
 # 프로그래머스 Lv.3 표현 가능한 이진트리
 # 2023 카카오 공채 1차 4번
-# 포화 이진 트리 + Binary Search(재귀)
+# 포화 이진 트리 + Binary Search(Recursion)
 
 import math
 
