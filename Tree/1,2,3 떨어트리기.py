@@ -58,8 +58,9 @@ def solution(edges, target):
     answer = [0]*len(num_sequence)
     for key in leaf:
         result = list()
-        sur_cap = target[key-1] - leaf_num[key]
-        result = [1]*(leaf_num[key] - sur_cap % 2 - sur_cap // 2) + [2]*(sur_cap % 2) + [3]*(sur_cap // 2)
+        criteria = target[key-1] - leaf_num[key]
+        #각 leaf node에 도달하는 1, 2, 3의 개수를 구하고 1부터 오름차순으로 도달하는 숫자 저장
+        result = [1]*(leaf_num[key] - criteria//2 - criteria%2) + [2]*(criteria%2) + [3]*(criteria//2)
         
         for idx, node in enumerate(num_sequence):
             if node == key :
