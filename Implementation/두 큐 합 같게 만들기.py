@@ -1,5 +1,5 @@
-# 프로그래머스 LV.2 두 큐 합 같게 만들기
-# 2022 카카오 테크 인턴십 2번
+# 프로그래머스 Lv.2 두 큐 합 같게 만들기
+# 2022 카카오 인턴십 2번
 # Python deque, 입력값 범위에 유의
 
 from collections import deque
