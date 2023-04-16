@@ -1,9 +1,6 @@
 # Codetree G3 n번째로 작은 이진수
 # 재귀 활용
 
-# Codetree G3 n번째로 작은 이진수
-# 재귀 활용
-
 import sys
 from itertools import combinations
 
