@@ -1,4 +1,4 @@
-# Codetree G5 경유지가 
+# Codetree G5 경유지가 있는 경로
 
 #include <iostream>
 using namespace std;
