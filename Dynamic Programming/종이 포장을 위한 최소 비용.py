@@ -53,3 +53,26 @@ for i in range(1, m+1):
 
 print(min_cost)
 print(answer)
+
+
+
+# 현재 작성중인 코드
+import sys
+
+n, m = map(int, sys.stdin.readline().split())
+box = [0 for i in range(0, m+2)] # box[i] = 1이면 해당 박스에 돌이 들어있음
+box[m+1] = 1
+for i in range(n):
+    index = int(sys.stdin.readline())
+    box[index] = 1
+    
+price = [int(sys.stdin.readline()) for i in range(m)]
+min_cost = [0 for i in range(m+1)] # 1번부터 각 박스를 탐색할 때 최소 비용 저장
+
+def packaging(min_cost, stones, paper_start, current):
+    if current == n: return min_cost[current]
+    
+    
+
+answer = packaging(min_cost, 0, 1)
+print(answer)
