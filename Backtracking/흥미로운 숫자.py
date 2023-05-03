@@ -21,7 +21,7 @@ def find_interesting(number, index, length, threshold, count):
     return 1
 
 for i in range(len_x, len_y+1):
-    # 자릿수가 i인 모든 흥미로운 숫자들이 정답 범위 내에 포함된다면
+    # 자릿수가 i인 모든 흥미로운 숫자들이 (0이 포함되는 경우를 제외하고) 정답 범위 내에 포함된다면
     # EX. i == 3이면 9C1 * 3P1 + 9C2 * 2 * 3P1 == 9*3 + 36*2*3 == 9*3 + 72*3 == 81*3
     if i > len_x and i < len_y: answer += (81*i)
     
