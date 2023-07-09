@@ -1,5 +1,5 @@
 # 프로그래머스 Lv.2 호텔 대실
-# 우선순위 큐 & 정렬 활용
+# 우선순위 큐 활용 => 큐의 길이 == 사용되고 있는 방의 개수
 
 import heapq
 
@@ -18,6 +18,7 @@ def convert_time(hour, minute):
 
 
 def solution(book_time):
+    # pq = 현재 사용중인 방의 퇴실 시간을 저장하는 우선순위 큐
     answer, booked, pq = 0, [], []
     
     for bt in book_time:
