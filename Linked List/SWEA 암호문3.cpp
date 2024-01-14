@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
-
 using namespace std;
 
 const int NODE_MAX = 5000;
@@ -18,8 +17,9 @@ class LinkedList {
     Node* tail;
     vector<Node*> nodeArr;
     int nodeCnt;
-    
-public: // Linked List Initialization
+
+// Linked List Initialization
+public:
     LinkedList() : head(nullptr), tail(nullptr), nodeCnt(0) {
         nodeArr.resize(NODE_MAX, nullptr);
     }
@@ -159,7 +159,6 @@ int main(){
                 }
             }
         }
-
         cout<<"#"<<t<<" ";
         list.print();
         cout<<"\n";
