@@ -21,15 +21,20 @@ public class Main {
 		    int w = Integer.parseInt(st.nextToken());
 		    board = new int[h][w];
 		    
+		    int countBlack = 0;
 		    for(int i=0; i<h; i++) {
 		        st = new StringTokenizer(br.readLine());
 		        
 		        for(int j=0; j<w; j++) {
 		            if(st.nextToken().equals("#")) board[i][j] = 1;
 		            else board[i][j] = 0;
+		            
+		            countBlack += board[i][j];
 		        }
 		    }
-		    System.out.println(countCases(h, w));
+		    // 입력받은 board에서 흰색 칸의 개수가 3의 배수 형태가 아닌 경우 답은 항상 0
+		    if((h*w - countBlack) % 3 >= 1) System.out.println(0);
+		    else System.out.println(countCases(h, w));
 		}
 	}
 	
