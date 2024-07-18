@@ -22,11 +22,11 @@ public class Main {
 
 		maxCardsNum[1] = 1;
 		for(int i=2; i<=n; i++) {
+		    maxCardsNum[i] = 1;
+		    
 		    for(int j=1; j<i; j++) {
 		        if(cards[i] > cards[j]) {
 		            maxCardsNum[i] = Math.max(maxCardsNum[i], maxCardsNum[j]+1);
-		        } else {
-		            maxCardsNum[i] = Math.max(maxCardsNum[i], 1);
 		        }
 		    }
 		}
