@@ -38,8 +38,8 @@ public class Main {
 		        locationList.add(loc);
 		    }
 		    
-		    int low = 0, high = 8030000;
-		    while(low < high) {
+		    int low = -1, high = 8030001;
+		    while(low <= high) {
 		        int mid = (low + high) / 2;
 		        int sum = 0;
 		        
@@ -60,7 +60,8 @@ public class Main {
 		        if(sum >= k) high = mid - 1;
 		        else low = mid + 1;
 		    }
-		    System.out.println(high);
+		    System.out.println(low);
 		}
 	}
 }
+
