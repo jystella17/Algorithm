@@ -47,13 +47,10 @@ public class Main {
 		            int start = locationList.get(i).start;
 		            int end = locationList.get(i).end;
 		            int interval = locationList.get(i).interval;
-
-		            if(mid >= end) {
-		                sum += ((end - start) / interval + 1);
-		            } else {
-		                int current = ((mid - start) / interval + 1);
-		                if(current < 0) continue;
-		                sum += current;
+		            
+		            if(mid >= start) {
+		                int bound = Math.min(end, mid);
+		                sum += ((bound - start) / interval + 1);
 		            }
 		        }
 		        
@@ -64,4 +61,3 @@ public class Main {
 		}
 	}
 }
-
