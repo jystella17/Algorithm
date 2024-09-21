@@ -14,7 +14,7 @@ public class Main {
     
     static int n, m;
     static int[] dx = {1, -1, 0, 0}, dy = {0, 0, 1, -1};
-    static int[][] paper, numberSum;
+    static int[][] paper;
     static int[][] exceptionX, exceptionY;
     static boolean[][] visited;
     
@@ -25,7 +25,7 @@ public class Main {
 		n = Integer.parseInt(st.nextToken());
 		m = Integer.parseInt(st.nextToken());
 		
-		paper = new int[n][m]; numberSum = new int[n][m];
+		paper = new int[n][m];
 		for(int i=0; i<n; i++){
 		    st = new StringTokenizer(br.readLine());
 		    for(int j=0; j<m; j++){
