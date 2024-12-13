@@ -33,10 +33,8 @@ void make_tree(int start, int prev){
 
 int find_independent(int current, int select){
     // dfs로 트리 탐색을 구현하기 위한 조건 => 각 노드를 1번씩만 방문 (리턴 제외)
-    if(dp[current][select] > -1) 
+    if(dp[current][select] > 0)
         return dp[current][select];
-    
-    int set_size = 0;
     
     // 현재 노드가 independent set에 포함되어 있는 경우
     if(select){
@@ -44,10 +42,10 @@ int find_independent(int current, int select){
         for(int i=0; i<tree[current].size(); i++){
             // 다음번 자식 노드는 포함하지 않고, 
             // 이후의 자식 노드들은 포함하거나 포함하지 않는 경우의 최대값
-            set_size += find_independent(tree[current][i], 0);
+            dp[current][1] += find_independent(tree[current][i], 0);
         }
         
-        return set_size + weights[current];
+        return dp[current][1] + weights[current];
     }
     
     // 포함되지 않은 경우
@@ -62,10 +60,10 @@ int find_independent(int current, int select){
             if(with > without)
                 is_selected[tree[current][i]] = true; // 독립 집합 후보에 추가
             
-            set_size += max(with, without);
+            dp[current][0] += max(with, without);
         }
         
-        return set_size;
+        return dp[current][0];
     }
 }
 
@@ -91,7 +89,7 @@ int main(){
         cin>>weights[i];
         
     for(int i=1; i<=n; i++)
-        dp[i][0] = dp[i][1] = -1;
+        dp[i][0] = dp[i][1] = 0;
         
     for(int i=0; i<n-1; i++){
         int a, b; cin>>a>>b;
@@ -105,14 +103,14 @@ int main(){
     // root 노드를 포함하는 쪽이 최적해가 될 수도 있고, 
     // 포함하지 않는 쪽이 최적해가 될 수도 있으므로
     // 두 케이스를 모두 계산
-    int with_root = find_independent(1, 1);
-    int without_root = find_independent(1, 0);
+    dp[1][1] = find_independent(1, 1);
+    dp[1][0] = find_independent(1, 0);
     
-    if(with_root > without_root){
+    if(dp[1][1] > dp[1][0]){
         is_selected[1] = true;
-        cout<<with_root<<"\n";
+        cout<<dp[1][1]<<"\n";
     }
-    else cout<<without_root<<"\n";
+    else cout<<dp[1][0]<<"\n";
     
     // 탐색 과정에서 거쳐간 노드들이 모두 선택된 상태로 배열에 남아있는 문제
     // => root 노드에서 시작해서, 현재 노드가 선택되었으면 다음 자식 노드는 모두 선택 해제
