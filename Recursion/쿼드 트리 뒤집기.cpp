@@ -13,6 +13,8 @@ string quad_tree(string::iterator& it){
     if(head == 'b' || head == 'w')
         return string(1, head);
 
+    // 좌상단 -> 우상단 -> 좌하단 -> 우하단 순서
+    // 기존 그림을 상하로 뒤집은 그림 = 좌하단 -> 우하단 -> 좌상단 -> 우상단 순서
     string lu = quad_tree(it);
     string ru = quad_tree(it);
     string ld = quad_tree(it);
